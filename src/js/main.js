@@ -8,6 +8,6 @@ const dataSource = new ProductData("tents");
 const element = document.querySelector(".product-list");
 const productListing = new ProductListing("Tents",dataSource,element);
 
-document.addEventListener("DOMContentLoaded", () => {loadHeaderFooter();})
+loadHeaderFooter();
 
 productListing.init();

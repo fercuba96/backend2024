@@ -60,11 +60,7 @@ if(!validPositions.includes(position)){
     parentElement.insertAdjacentHTML(position,htmlStrings.join(""));
   }
    }
-export function renderWithTemplate(template, parentElement, clear=true) {
-  if(clear){
-    parentElement.innerHTML="";
-  }
-    parentElement.insertAdjacentHTML("afterbegin", template);}
+
 
 export function convertToText(response) {
       if (response.ok) {
@@ -73,17 +69,21 @@ export function convertToText(response) {
         throw new Error(`Failed to fetch template: ${response.status} ${response.statusText}`);
       }
     }
-export async function loadTemplate(path){
-  try {
-    const response = await fetch(path);
-    const templateText = await convertToText(response);
-    return templateText;
-  } catch (error) {
-    console.error(`Error loading template from ${path}:`, error);
-    throw error;
-  }
+export async function loadTemplate(path) {
+      try {
+        const html = await fetch(path).then(convertToText);
+        const template = document.createElement("template");
+        template.innerHTML = html;
+        return template;
+      } catch (error) {
+        console.error(`Error loading template from ${path}:`, error);
+        throw error;
+      }
+    }
 
-}
+export function renderWithTemplate(template, parentElement) {
+      parentElement.innerHTML = template.content.cloneNode(true).innerHTML;}
+
 export async function loadHeaderFooter(){
   try{
     const headerTemplate = await loadTemplate("public/partials/header.html");
