@@ -61,20 +61,11 @@ if(!validPositions.includes(position)){
   }
    }
 
-
-export function convertToText(response) {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error(`Failed to fetch template: ${response.status} ${response.statusText}`);
-      }
-    }
 export async function loadTemplate(path) {
       try {
-        const html = await fetch(path).then(convertToText);
-        const template = document.createElement("template");
-        template.innerHTML = html;
-        return template;
+        const res = await fetch(path);
+        const templateText = await res.text();
+        return templateText;
       } catch (error) {
         console.error(`Error loading template from ${path}:`, error);
         throw error;
@@ -82,15 +73,16 @@ export async function loadTemplate(path) {
     }
 
 export function renderWithTemplate(template, parentElement) {
-      parentElement.innerHTML = template.content.cloneNode(true).innerHTML;}
 
+  parentElement.insertAdjacentHTML("afterbegin",template);
+}
 export async function loadHeaderFooter(){
   try{
-    const headerTemplate = await loadTemplate("public/partials/header.html");
-    const footerTemplate = await loadTemplate("public/partials/footer.html");
+    const headerTemplate = await loadTemplate("../partials/header.html");
+    const footerTemplate = await loadTemplate("../partials/footer.html");
 
-    const headerElement = document.querySelector("header");
-    const footerElement = document.querySelector("footer");
+    const headerElement = document.querySelector("#main-header");
+    const footerElement = document.querySelector("#main-footer");
 
     if(headerElement){
       renderWithTemplate(headerTemplate,headerElement);
