@@ -60,3 +60,51 @@ if(!validPositions.includes(position)){
     parentElement.insertAdjacentHTML(position,htmlStrings.join(""));
   }
    }
+export function renderWithTemplate(template, parentElement, clear=true) {
+  if(clear){
+    parentElement.innerHTML="";
+  }
+    parentElement.insertAdjacentHTML("afterbegin", template);}
+
+export function convertToText(response) {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error(`Failed to fetch template: ${response.status} ${response.statusText}`);
+      }
+    }
+export async function loadTemplate(path){
+  try {
+    const response = await fetch(path);
+    const templateText = await convertToText(response);
+    return templateText;
+  } catch (error) {
+    console.error(`Error loading template from ${path}:`, error);
+    throw error;
+  }
+
+}
+export async function loadHeaderFooter(){
+  try{
+    const headerTemplate = await loadTemplate("public/partials/header.html");
+    const footerTemplate = await loadTemplate("public/partials/footer.html");
+
+    const headerElement = document.querySelector("header");
+    const footerElement = document.querySelector("footer");
+
+    if(headerElement){
+      renderWithTemplate(headerTemplate,headerElement);
+    }else{
+      console.warn("Header element not found.");
+    }
+    if(footerElement){
+      renderWithTemplate(footerTemplate,footerElement);
+    }else{
+      console.warn("Footer element not found.");
+    }
+  }
+  catch (error){
+    console.error("Error loading header or footer:", error);
+  }
+  
+}
