@@ -11,3 +11,5 @@ requesting FA
 hour now
 
 pa 11:51 am 
+
+VITE_SERVER_URL=http://server-nodejs.cit.byui.edu:3000/
