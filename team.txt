@@ -1,5 +1,7 @@
 https://trello.com/invite/b/672d77158b1f6e2e7ba18298/ATTIf6d50f668d1f015a91e4664bd729a8250A1B54BA/team-meeting-group-13
 
+our website : https://voluble-taffy-2748ab.netlify.app/
+
 Fernando Cuba
 https://trello.com/b/LaPOHMOU/team-meeting-group-13
 https://trello.com/b/LaPOHMOU/team-meeting-group-13
@@ -11,3 +13,9 @@ requesting FA
 hour now
 
 pa 11:51 am 
+
+VITE_SERVER_URL=http://server-nodejs.cit.byui.edu:3000/
+
+This is the back repo 
+
+check it out
