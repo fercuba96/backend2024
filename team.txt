@@ -16,4 +16,6 @@ pa 11:51 am
 
 VITE_SERVER_URL=http://server-nodejs.cit.byui.edu:3000/
 
-I am checking my code
+This is the back repo 
+
+check it out
