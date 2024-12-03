@@ -16,8 +16,8 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   const isDiscounted = item.FinalPrice < item.SuggestedRetailPrice;
-  const discountPercentage = isDiscounted? Math.round(
-    ((item.SuggestedRetailPrice - item.FinalPrice) / item.SuggestedRetailPrice)*100):null;
+  const discountPercentage = isDiscounted ?  Math.round(
+    ((item.SuggestedRetailPrice - item.FinalPrice) / item.SuggestedRetailPrice) * 100) : null;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -34,7 +34,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__price">Final Price: $${item.FinalPrice}</p>
   ${
     isDiscounted
-    ?`<p class="cart-card_discount">Discount: ${discountPercentage}% off</p>`:""
+     ? `<p class="cart-card_discount">Discount: ${discountPercentage}% off</p>` : ""
   }
 
 </li>`;
