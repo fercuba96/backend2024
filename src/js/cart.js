@@ -6,12 +6,21 @@ loadHeaderFooter();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
+  const productListElement = document.querySelector(".product-list");
+  const cartFooter = document.querySelector(".cart-footer");
+
   if (cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML = "<p>Your cart is empty.</p>";
+    productListElement.innerHTML = "<p>Your cart is empty.</p>";
+    cartFooter.classList.add("hide");
     return;
   }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  productListElement.innerHTML = htmlItems.join("");
+
+  const totalAmount = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+  cartFooter.querySelector(".cart-total").innerHTML = `Total: ${totalAmount.toFixed(2)}`;
+  cartFooter.classList.remove("hide");
+
 }
 
 function cartItemTemplate(item) {
