@@ -46,7 +46,7 @@
         </ul>
       </div>
       <div class="form-display">
-        <form method="post" action="">
+        <form method="POST" id="checkout-form" novalidate >
             <fieldset>
               <p>Customer name</p>
                 <label> First name*<input type="text" name="account_firstname" id="accountFirstname" required ></label>
@@ -57,7 +57,7 @@
                 <label> Street*<input type="text" name="account_street_address" id="accountStreetAddress" placeholder="Street name" required ></label>
                 <label> City*<input type="text" name="account_city_address" id="accountCityAddress" placeholder="City name" required></label>
                 <label> State*<input type="text" name="account_state_address" id="accountStateAddress" placeholder="State name" required></label>
-                <label> Zip code*<input type="text" name="account_zipcode_address" id="accountZipcodeAddress" placeholder="Zipcode" required></label>
+                <label> Zip*<input type="text" name="account_zipcode_address" id="zip" placeholder="Zip" required></label>
             </fieldset>
             <fieldset>
                  <p>Payment</p>
@@ -68,7 +68,7 @@
                   <label> CVV*<input type="text" name="account_cvv_card" id="accountCvvCard" placeholder="123" required pattern="\d{3}" 
                     title="Enter a valid 3-digit CVV code."></label> 
             </fieldset>
-              <button type="submit">Buy</button>            
+              <button  id="checkoutSubmit"  type="submit">Place order</button>            
         </form>
         </div>
     </main>

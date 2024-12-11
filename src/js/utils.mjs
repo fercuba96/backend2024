@@ -100,3 +100,42 @@ export async function loadHeaderFooter(){
   }
   
 }
+
+export function alertMessage(message, scroll = true) {
+  const mainElement = document.querySelector('main');
+
+  if (!mainElement) {
+    console.error('Main element not found.');
+    return;
+  }
+
+  const existingAlert = mainElement.querySelector('.alert');
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+  const alertElement = document.createElement('div');
+  alertElement.classList.add('alert');
+  alertElement.setAttribute('role', 'alert');
+  alertElement.innerHTML = `
+    <p>${message}</p>
+    <button class="alert-close" aria-label="Close alert">&times;</button>
+  `;
+
+  mainElement.prepend(alertElement);
+
+  if (scroll) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  const closeButton = alertElement.querySelector('.alert-close');
+  closeButton.addEventListener('click', () => {
+    alertElement.remove();
+  });
+
+  setTimeout(() => {
+    alertElement.remove();
+  }, 5000);
+}
